@@ -492,7 +492,8 @@
     .reg-mhdr { padding:26px 30px 0; display:flex; justify-content:space-between; align-items:flex-start; }
     .reg-mhdr h2 { font-family:'Playfair Display',serif; font-size:1.4rem; color:white; }
     .reg-mhdr p { color:var(--muted); font-size:0.8rem; margin-top:3px; }
-    .reg-close { background:rgba(255,255,255,0.07); border:none; color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:none; font-size:0.9rem; transition:all 0.2s; }
+    .reg-close { background:rgba(255,255,255,0.07); border:none; color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:none; font-size:1.15rem; line-height:1; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+    .reg-close::before { content:'\00D7'; }
     .reg-close:hover { background:rgba(255,255,255,0.12); color:white; }
     .reg-mbody { padding:22px 30px 30px; }
     .prog-wrap { display:flex; margin-bottom:22px; position:relative; }
@@ -986,6 +987,24 @@
     }
     .cert-thanks-tx { color:var(--text); font-size:0.9rem; line-height:1.7; }
     .cert-thanks-tx b { color:var(--gold-l); }
+    /* contact form */
+    .contact-form-wrap {
+      max-width:700px; margin:46px auto 0;
+      background:linear-gradient(160deg,rgba(13,138,143,0.1),rgba(7,21,24,0.8));
+      border:1px solid rgba(13,138,143,0.2);
+      border-radius:18px; padding:34px 30px; backdrop-filter:blur(8px);
+      transition:border-color 0.35s;
+    }
+    .contact-form-wrap:hover { border-color:rgba(13,138,143,0.3); }
+    .cf-title { font-family:'Playfair Display',serif; font-size:1.5rem; color:#fff; margin-bottom:8px; text-align:center; }
+    .cf-sub { color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 auto 24px; max-width:520px; text-align:center; }
+    .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:0 16px; }
+    .cf-textarea { min-height:132px; resize:vertical; line-height:1.6; }
+    .cf-msg { margin-top:14px; font-size:0.88rem; line-height:1.6; display:none; }
+    .cf-msg.show { display:block; }
+    .cf-msg.ok { color:var(--teal-ll); }
+    .cf-msg.err { color:#ff9c9c; }
+    @media(max-width:600px){ .cf-row { grid-template-columns:1fr; } }
     @media (max-width:600px){ .cert-panel{ padding:22px; } }
   </style>
 </head>
@@ -1046,34 +1065,36 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
-    <div class="hero-content">
+  <div class="hero-content">
     <!-- Main text block -->
-    <div style="margin-bottom:28px;">
+    <div style="margin-bottom:8px;">
       <div style="font-size:clamp(1.3rem,3vw,2rem);color:white;margin-bottom:8px;letter-spacing:1px;font-family:'Playfair Display',serif;font-weight:600;">Nursing Research and Innovation Forum (NRIF)</div>
-      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:rgba(255,255,255,0.6);margin-bottom:4px;">— 3<sup>rd</sup> Edition —</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:rgba(255,255,255,0.6);margin-bottom:4px;">&mdash; 3<sup>rd</sup> Edition &mdash;</div>
       <h1 class="hero-title" style="font-size:clamp(1.2rem,2.5vw,2rem);margin-bottom:8px;">2026</h1>
       <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px;">
         <div style="height:1px;width:60px;background:rgba(255,255,255,0.3);"></div>
-        <div style="color:rgba(255,255,255,0.75);font-size:0.9rem;letter-spacing:3px;">Research • Innovation • Impact</div>
+        <div style="color:rgba(255,255,255,0.75);font-size:0.9rem;letter-spacing:3px;">Research &bull; Innovation &bull; Impact</div>
         <div style="height:1px;width:60px;background:rgba(255,255,255,0.3);"></div>
       </div>
       <div style="height:1px;background:rgba(255,255,255,0.2);margin-bottom:20px;"></div>
       <p class="hero-theme" style="font-size:1.1rem;color:rgba(255,255,255,0.85);font-style:italic;">"Transforming Healthcare Through Research, Innovation, and Multidisciplinary Clinical Impact"</p>
     </div>
-    <div class="hero-stats" style="margin-bottom:32px;"><div class="hs-item"><div class="hs-val">3rd</div><div class="hs-lbl">Annual Edition</div></div>
-    <div class="hero-btns">
-      <a href="#" onclick="openReg()" class="btn-p">Register Now</a>
-      <a href="#agenda" class="btn-o">View Agenda</a>
-    </div>
-    </div>
-      </div>
-    </div>
-    
+
+    <!-- Stats row (all four, evenly balanced) -->
+    <div class="hero-stats" style="margin-top:40px;">
+      <div class="hs-item"><div class="hs-val">3rd</div><div class="hs-lbl">Annual Edition</div></div>
       <div class="hs-item"><div class="hs-val">Wed</div><div class="hs-lbl">June 3, 2026</div></div>
       <div class="hs-item"><div class="hs-val">2</div><div class="hs-lbl">Panel Discussions</div></div>
       <div class="hs-item"><div class="hs-val">9+</div><div class="hs-lbl">Excellence Partners</div></div>
     </div>
-  </div></section>
+
+    <!-- Buttons row -->
+    <div class="hero-btns" style="margin-top:34px;">
+      <a href="#" onclick="openReg()" class="btn-p">Register Now</a>
+      <a href="#agenda" class="btn-o">View Agenda</a>
+    </div>
+  </div>
+</section>
 
 <!-- ══ FORUM OVERVIEW ══ -->
 <section id="overview" class="section alt-bg">
@@ -1578,8 +1599,15 @@
           <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260603T083000%0ADTEND:20260603T140000%0ASUMMARY:NRIF%202026%20%E2%80%93%20Nursing%20Research%20%26%20Innovation%20Forum%0ADESCRIPTION:3rd%20Annual%20Nursing%20Research%20%26%20Innovation%20Forum%20%7C%20College%20of%20Nursing%2C%20IAU%0ALOCATION:College%20of%20Nursing%2C%20Imam%20Abdulrahman%20Bin%20Faisal%20University%2C%20Dammam%0AURL:https://maps.app.goo.gl/Mbi1r8FoZfhEZpqi8%0AEND:VEVENT%0AEND:VCALENDAR" download="NRIF2026.ics" style="display:inline-block;background:rgba(13,138,143,0.15);border:1px solid rgba(13,138,143,0.3);color:var(--teal-ll);font-size:0.75rem;padding:6px 16px;border-radius:100px;text-decoration:none;transition:all 0.2s;">+ Add to Calendar</a>
         </div>
       </div>
+      <div class="cc reveal" style="cursor:pointer;" onclick="openContact()">
+        <div class="cc-icon"></div>
+        <h4>Message Us</h4>
+        <p>Questions, ideas, or collaboration?<br>Send us a message and we'll reply by email.</p>
+        <div style="margin-top:10px;display:inline-block;background:rgba(13,138,143,0.15);border:1px solid rgba(13,138,143,0.3);color:var(--teal-ll);font-size:0.75rem;padding:5px 14px;border-radius:100px;transition:all 0.2s;">Write a message &rarr;</div>
+      </div>
       
     </div>
+
   </div>
 </section>
 
@@ -1592,6 +1620,28 @@
 </footer>
 
 <!-- ══ REGISTRATION MODAL ══ -->
+<!-- ══ CONTACT MODAL ══ -->
+<div class="reg-overlay" id="contactOverlay">
+  <div class="reg-back" onclick="closeContact()"></div>
+  <div class="reg-modal" style="max-width:560px;">
+    <div class="reg-mhdr">
+      <div><h2>Get in touch with NRIF</h2><p>We'll get back to you by email</p></div>
+      <button class="reg-close" onclick="closeContact()"></button>
+    </div>
+    <div class="reg-mbody">
+      <p class="cf-sub" style="text-align:left;margin:0 0 18px;">Have a question, idea, or collaboration in mind? Send us a message below.</p>
+      <div class="cf-row">
+        <div class="cert-field"><label for="cfFirst">First Name</label><input id="cfFirst" class="cert-input" type="text" autocomplete="given-name" placeholder="First name"/></div>
+        <div class="cert-field"><label for="cfLast">Last Name</label><input id="cfLast" class="cert-input" type="text" autocomplete="family-name" placeholder="Last name"/></div>
+      </div>
+      <div class="cert-field"><label for="cfEmail">Email</label><input id="cfEmail" class="cert-input" type="email" autocomplete="email" placeholder="Enter your email"/></div>
+      <div class="cert-field"><label for="cfMsg">Message</label><textarea id="cfMsg" class="cert-input cf-textarea" placeholder="Enter your message"></textarea></div>
+      <button type="button" class="cert-btn" id="cfBtn" onclick="sendContact()">Send Message</button>
+      <div class="cf-msg" id="cfMsgBox"></div>
+    </div>
+  </div>
+</div>
+
 <div class="reg-overlay" id="regOverlay">
   <div class="reg-back" onclick="closeReg()"></div>
   <div class="reg-modal">
@@ -1698,6 +1748,13 @@ function closeFab(){document.getElementById('fab').classList.remove('open');docu
 let curStep=1;
 function openReg(){document.getElementById('regOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeReg(){document.getElementById('regOverlay').classList.remove('open');document.body.style.overflow='';}
+function openContact(){
+  var b=document.getElementById('cfMsgBox'); if(b){ b.className='cf-msg'; b.textContent=''; }
+  document.getElementById('contactOverlay').classList.add('open'); document.body.style.overflow='hidden';
+}
+function closeContact(){
+  document.getElementById('contactOverlay').classList.remove('open'); document.body.style.overflow='';
+}
 function goStep(n){
   if(n>curStep&&!valStep(curStep))return;
   document.getElementById('fs'+curStep).classList.remove('active');
@@ -2012,6 +2069,42 @@ function toggleComm(i) {
 
 renderCommittees();
 
+
+// ── CONTACT FORM ──
+function sendContact(){
+  var f  = document.getElementById('cfFirst').value.trim();
+  var l  = document.getElementById('cfLast').value.trim();
+  var em = document.getElementById('cfEmail').value.trim();
+  var ms = document.getElementById('cfMsg').value.trim();
+  var box = document.getElementById('cfMsgBox');
+  var show = function(t, ok){ box.textContent = t; box.className = 'cf-msg show ' + (ok ? 'ok' : 'err'); };
+
+  if(!f || !ms){ show('Please enter your name and a message.', false); return; }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ show('Please enter a valid email so we can reply.', false); return; }
+
+  var btn = document.getElementById('cfBtn');
+  var orig = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sending\u2026';
+
+  var data = { type:'contact', firstName:f, lastName:l, email:em, message:ms, timestamp:new Date().toISOString() };
+  try {
+    var _curl = (typeof CERT_CONFIG !== 'undefined' && CERT_CONFIG.verifyUrl) ? CERT_CONFIG.verifyUrl
+              : (typeof SHEETS !== 'undefined' ? SHEETS : '');
+    if(_curl){
+      fetch(_curl, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+    }
+  } catch(e){}
+
+  setTimeout(function(){
+    btn.disabled = false; btn.textContent = orig;
+    document.getElementById('cfFirst').value = '';
+    document.getElementById('cfLast').value  = '';
+    document.getElementById('cfEmail').value = '';
+    document.getElementById('cfMsg').value   = '';
+    show('Thank you' + (f ? ', ' + f : '') + '! Your message has been sent \u2014 we\'ll get back to you by email.', true);
+    setTimeout(closeContact, 1700);
+  }, 700);
+}
 
 // ── REGISTRATION CONTROL ──
 function checkRegStatus() {
